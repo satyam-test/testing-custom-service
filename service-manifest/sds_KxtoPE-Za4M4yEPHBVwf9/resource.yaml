@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-deployment-name-30
-  namespace: test-namespace-30
+  name: test-deployment-name-33
+  namespace: test-namespace-33
   labels:
-    app: test-deployment-name-30
+    app: test-deployment-name-33
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test-deployment-name-30
+      app: test-deployment-name-33
   template:
     metadata:
       labels:
-        app: test-deployment-name-30
+        app: test-deployment-name-33
     spec:
       containers:
-        - name: test-deployment-name-30-container
+        - name: test-deployment-name-33-container
           image: https://docker.io/satyamp07/rabbitmq:latest
           ports:
             - containerPort: 80
@@ -40,16 +40,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-deployment-name-30
-  namespace: test-namespace-30
+  name: test-deployment-name-33
+  namespace: test-namespace-33
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-ipv6: 'false'
   labels:
-    app: test-deployment-name-30
+    app: test-deployment-name-33
 spec:
   type: ClusterIP
   selector:
-    app: test-deployment-name-30
+    app: test-deployment-name-33
   ports:
     - protocol: TCP
       port: 80
@@ -62,24 +62,24 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: test-deployment-name-30
-  namespace: test-namespace-30
+  name: test-deployment-name-33
+  namespace: test-namespace-33
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
-    - host: test-deployment-name-30-mtqfj.scoutflo.agency
+    - host: test-deployment-name-33-o3dqq.scoutflo.agency
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: test-deployment-name-30
+                name: test-deployment-name-33
                 port:
                   number: 80
   tls:
     - hosts:
-        - test-deployment-name-30-mtqfj.scoutflo.agency
-      secretName: test-deployment-name-30-mtqfj-scoutflo-agency-tls
+        - test-deployment-name-33-o3dqq.scoutflo.agency
+      secretName: test-deployment-name-33-o3dqq-scoutflo-agency-tls
