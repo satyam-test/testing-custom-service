@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-deployment-name-34
-  namespace: test-namespace-34
+  name: test-deployment-name-35
+  namespace: test-namespace-35
   labels:
-    app: test-deployment-name-34
+    app: test-deployment-name-35
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test-deployment-name-34
+      app: test-deployment-name-35
   template:
     metadata:
       labels:
-        app: test-deployment-name-34
+        app: test-deployment-name-35
     spec:
       containers:
-        - name: test-deployment-name-34-container
+        - name: test-deployment-name-35-container
           image: https://docker.io/satyamp07/rabbitmq:latest
           ports:
             - containerPort: 80
@@ -40,16 +40,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-deployment-name-34
-  namespace: test-namespace-34
+  name: test-deployment-name-35
+  namespace: test-namespace-35
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-ipv6: 'false'
   labels:
-    app: test-deployment-name-34
+    app: test-deployment-name-35
 spec:
   type: ClusterIP
   selector:
-    app: test-deployment-name-34
+    app: test-deployment-name-35
   ports:
     - protocol: TCP
       port: 80
@@ -57,29 +57,3 @@ spec:
     - protocol: TCP
       port: 443
       targetPort: 443
-
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: test-deployment-name-34
-  namespace: test-namespace-34
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-spec:
-  rules:
-    - host: test-deployment-name-34-uzhcj.scoutflo.agency
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: test-deployment-name-34
-                port:
-                  number: 80
-  tls:
-    - hosts:
-        - test-deployment-name-34-uzhcj.scoutflo.agency
-      secretName: test-deployment-name-34-uzhcj-scoutflo-agency-tls
