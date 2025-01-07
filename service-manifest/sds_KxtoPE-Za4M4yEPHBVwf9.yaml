@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-deployment-name-23
-  namespace: test-namespace-23
+  name: test-deployment-name-24
+  namespace: test-namespace-24
   labels:
-    app: test-deployment-name-23
+    app: test-deployment-name-24
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test-deployment-name-23
+      app: test-deployment-name-24
   template:
     metadata:
       labels:
-        app: test-deployment-name-23
+        app: test-deployment-name-24
     spec:
       containers:
-        - name: test-deployment-name-23-container
+        - name: test-deployment-name-24-container
           image: https://docker.io/satyamp07/rabbitmq:latest
           ports:
             - containerPort: 80
@@ -40,16 +40,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-deployment-name-23
-  namespace: test-namespace-23
+  name: test-deployment-name-24
+  namespace: test-namespace-24
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-ipv6: 'false'
   labels:
-    app: test-deployment-name-23
+    app: test-deployment-name-24
 spec:
   type: ClusterIP
   selector:
-    app: test-deployment-name-23
+    app: test-deployment-name-24
   ports:
     - protocol: TCP
       port: 80
@@ -62,24 +62,24 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: test-deployment-name-23
-  namespace: test-namespace-23
+  name: test-deployment-name-24
+  namespace: test-namespace-24
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
-    - host: test-deployment-name-23-aduf0.scoutflo.agency
+    - host: test-deployment-name-24-kcvoc.scoutflo.agency
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: test-deployment-name-23
+                name: test-deployment-name-24
                 port:
                   number: 80
   tls:
     - hosts:
-        - test-deployment-name-23-aduf0.scoutflo.agency
-      secretName: test-deployment-name-23-aduf0-scoutflo-agency-tls
+        - test-deployment-name-24-kcvoc.scoutflo.agency
+      secretName: test-deployment-name-24-kcvoc-scoutflo-agency-tls
