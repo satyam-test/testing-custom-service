@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-deployment-name-36
-  namespace: test-namespace-36
+  name: test-deployment-name-37
+  namespace: test-namespace-37
   labels:
-    app: test-deployment-name-36
+    app: test-deployment-name-37
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test-deployment-name-36
+      app: test-deployment-name-37
   template:
     metadata:
       labels:
-        app: test-deployment-name-36
+        app: test-deployment-name-37
     spec:
       containers:
-        - name: test-deployment-name-36-container
+        - name: test-deployment-name-37-container
           image: https://docker.io/satyamp07/rabbitmq:latest
           ports:
             - containerPort: 80
@@ -40,16 +40,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-deployment-name-36
-  namespace: test-namespace-36
+  name: test-deployment-name-37
+  namespace: test-namespace-37
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-ipv6: 'false'
   labels:
-    app: test-deployment-name-36
+    app: test-deployment-name-37
 spec:
   type: ClusterIP
   selector:
-    app: test-deployment-name-36
+    app: test-deployment-name-37
   ports:
     - protocol: TCP
       port: 80
