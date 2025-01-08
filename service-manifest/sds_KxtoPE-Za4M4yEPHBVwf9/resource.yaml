@@ -33,6 +33,8 @@ spec:
               value: production
             - name: API_KEY
               value: your-api-key-here
+          imagePullSecrets:
+            - name: cr-credentials    
 
 ---
 apiVersion: v1
