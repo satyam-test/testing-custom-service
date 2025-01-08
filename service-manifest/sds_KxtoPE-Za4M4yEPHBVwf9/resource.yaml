@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: test-deployment-name-37-container
-          image: satyamp07/rabbitmq1:latest
+          image: rabbitmq:management-alpine
           ports:
             - containerPort: 80
             - containerPort: 443
