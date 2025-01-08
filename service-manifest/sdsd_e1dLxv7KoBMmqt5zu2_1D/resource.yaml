@@ -10,11 +10,11 @@ spec:
   selector:
     app: test-deployment-name-44
   ports:
-    - name: TCP
+    - name: http
       protocol: TCP
       port: 80
       targetPort: 80
-    - name: TCP
+    - name: https
       protocol: TCP
       port: 443
       targetPort: 443
