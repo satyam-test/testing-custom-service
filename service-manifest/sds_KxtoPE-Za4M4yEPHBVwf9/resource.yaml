@@ -33,8 +33,6 @@ spec:
               value: production
             - name: API_KEY
               value: your-api-key-here
-      imagePullSecrets:
-        - name: scoutflo-certmanager-secret
 
 ---
 apiVersion: v1
