@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-deployment-name-58
+  namespace: test-namespace-58
+  labels:
+    app: test-deployment-name-58
+spec:
+  type: ClusterIP
+  selector:
+    app: test-deployment-name-58
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-deployment-name-58
+  namespace: test-namespace-58
+  labels:
+    app: test-deployment-name-58
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-deployment-name-58
+  template:
+    metadata:
+      labels:
+        app: test-deployment-name-58
+    spec:
+      containers:
+        - name: test-deployment-name-58-container
+          image: docker.io/satyamp07/rabbitmq1:alpine
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: 2Mi
+              cpu: '2'
+            limits:
+              memory: 2Gi
+              cpu: '2'
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: API_KEY
+              value: your-api-key-here
+      imagePullSecrets:
+        - name: scoutflo-registry-secret
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-deployment-name-58
+  namespace: test-namespace-58
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+    - host: docker-custom-service-test-test-qphev.scoutflo.agency
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: test-deployment-name-58
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - docker-custom-service-test-test-qphev.scoutflo.agency
+      secretName: scoutflo-agency-wildcard-tls
